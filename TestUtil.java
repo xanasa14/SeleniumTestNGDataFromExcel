@@ -4,8 +4,9 @@
 //Download and extract into a new folder. Then, add external jar files in the project.
 // https://www.apache.org/dyn/closer.lua/poi/dev/bin/poi-bin-3.17-beta1-20170701.tar.gz
 	
-
+//Make sure to edit excel colummns from the source project site.
 import java.util.ArrayList;
+
 import com.excel.utility.*;
 public class TestUtil {
 	
@@ -21,12 +22,15 @@ public class TestUtil {
 			e.printStackTrace();
 		}
 		
-		for (int rowNum = 2; rowNum<=reader.getRowCount("SelPractice.xlsx"); rowNum++ ) {
-			String firstName = reader.getCellData("RegTestData", "firstname", rowNum);
-			String lastName = reader.getCellData("RegTestData", "lastname", rowNum);
-			String email = reader.getCellData("RegTestData", "email", rowNum);
-			String password = reader.getCellData("RegTestData", "password", rowNum);
-			Object ob[] = {firstName, lastName, email, password};
+		for (int rowNum = 2; rowNum<=reader.getRowCount("Sheet1"); rowNum++ ) {
+			String firstName = reader.getCellData("Sheet1", "firstname", rowNum);
+			String lastName = reader.getCellData("Sheet1", "lastname", rowNum);
+			String e = reader.getCellData("Sheet1", "e", rowNum);
+			System.out.println("the email is "  + e);
+			String password = reader.getCellData("Sheet1", "p", rowNum);
+			System.out.println(password);
+			System.out.println(firstName + " " + e);
+			Object ob[] = {firstName, lastName, e, password};
 			myData.add(ob);
 		}
 		
@@ -34,4 +38,20 @@ public class TestUtil {
 		return myData;
 		
 	}
+	
+	/*
+	 * So, in student.Student@82701e that you get as output ->
+	 * 
+	 * student.Student is the Type, and 82701e is the HashCode So, you need to
+	 * override a toString method in your Student class to get required String
+	 * representation: -
+	 * 
+	 * @Override public String toString() { return "Student No: " +
+	 * this.getStudentNo() + ", Student Name: " + this.getStudentName(); }
+	 */
+		
+	
+	
+	
+	
 }
